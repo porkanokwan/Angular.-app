@@ -1,0 +1,24 @@
+<p>service Component works!</p>
+
+<hr />
+<label>Server Name</label>
+<!-- bind event -->
+<!-- <input type="text" (input)="onUpdateServerName($event)" /> -->
+
+<!-- Two way data binding ทำให้ตัว input มี default ได้ และทำงานได้เหมือนการ bind event -->
+<input type="text" [(ngModel)]="serverName" />
+<!-- <p>{{ serverName }}</p> -->
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()"
+>
+  Add Server
+</button>
+<!-- <p>{{ allowNewServer }}</p> -->
+<!-- directive if else -->
+<p *ngIf="isServerCreate; else noServer" [innerText]="serverCreationStatus"></p>
+<ng-template #noServer><p>No server creations</p></ng-template>
+
+<!-- สามารถซ้อน Component กันได้ -->
+<app-server *ngFor="let server of serverNameArr"></app-server>
